@@ -23,8 +23,8 @@ Route::get('color-scheme-switcher/{color_scheme}', [ColorSchemeController::class
 Route::controller(AuthController::class)->middleware('loggedin')->group(function() {
     Route::get('login', 'loginView')->name('login.index');
     Route::post('login', 'login')->name('login.check');
-    Route::get('register', 'register')->name('register.index');
-    Route::post('register', 'registerPost')->name('register.store');
+    Route::get('register', 'registerView')->name('register.index');
+    Route::post('register', 'register')->name('register.store');
 });
 
 Route::middleware('auth')->group(function() {
