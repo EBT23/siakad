@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
 use App\Http\Request\LoginRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
@@ -28,7 +32,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (!\Auth::attempt([
+        if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password
         ])) {
@@ -42,9 +46,33 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+ 
+    public function register()
     {
-        \Auth::logout();
-        return redirect('login');
+        return view('pages.register');
+    }
+
+    public function registerPost(Request $request)
+    {
+
+        dd($request);
+        $request->validate(
+            [
+                'nama' => 'required',
+                'email' => 'required|unique:users,email',
+                'password' => 'required'
+            ],
+        $data = [
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'created_at' => now(),
+        ]);
+        DB::table('users')->insert($data);
+
+        return redirect()->route('login.index');
+        
+        
+   
     }
 }
