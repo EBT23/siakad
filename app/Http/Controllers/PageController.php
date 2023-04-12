@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
 {
@@ -45,6 +48,13 @@ class PageController extends Controller
         return view('pages/dashboard-overview-3');
     }
 
+    /**
+     * Show specified view.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    
     /**
      * Show specified view.
      *
@@ -131,6 +141,11 @@ class PageController extends Controller
     public function crudForm()
     {
         return view('pages/crud-form');
+    }
+
+    public function roleForm()
+    {
+        return view('pages/role-form');
     }
 
     /**

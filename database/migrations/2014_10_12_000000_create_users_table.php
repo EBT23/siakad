@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('gender');
             $table->integer('active');
-            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

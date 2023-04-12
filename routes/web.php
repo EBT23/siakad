@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
@@ -34,6 +35,36 @@ Route::middleware('auth')->group(function() {
         Route::get('dashboard-overview-2-page', 'dashboardOverview2')->name('dashboard-overview-2');
         Route::get('dashboard-overview-3-page', 'dashboardOverview3')->name('dashboard-overview-3');
         Route::get('inbox-page', 'inbox')->name('inbox');
+
+        //ROLE
+        Route::get('role-page', [AdminController::class,'role'])->name('role');
+        Route::post('role', [AdminController::class, 'tambah_role'])->name('role.post');
+        Route::post('role/{id}', [AdminController::class, 'edit_role'])->name('role.edit');
+	    Route::delete('hapus_role/{id}', [AdminController::class, 'hapus_role'])->name('role.hapus');
+
+       //KELAS
+        Route::get('kelas-page', [AdminController::class,'kelas'])->name('kelas');
+        Route::post('kelas', [AdminController::class, 'tambah_kelas'])->name('kelas.post');
+        Route::post('kelas/{id}', [AdminController::class, 'edit_kelas'])->name('kelas.edit');
+	    Route::delete('hapus_kelas/{id}', [AdminController::class, 'hapus_kelas'])->name('kelas.hapus');
+
+        //MAPEL
+        Route::get('mapel-page', [AdminController::class,'mapel'])->name('mapel');
+        Route::post('mapel', [AdminController::class, 'tambah_mapel'])->name('mapel.post');
+        Route::post('mapel/{id}', [AdminController::class, 'edit_mapel'])->name('mapel.edit');
+	    Route::delete('hapus_mapel/{id}', [AdminController::class, 'hapus_mapel'])->name('mapel.hapus');
+       
+        //SEMESTER
+        Route::get('semester-page', [AdminController::class,'semester'])->name('semester');
+        Route::post('semester', [AdminController::class, 'tambah_semester'])->name('semester.post');
+        Route::post('semester/{id}', [AdminController::class, 'edit_semester'])->name('semester.edit');
+	    Route::delete('hapus_semester/{id}', [AdminController::class, 'hapus_semester'])->name('semester.hapus');
+        //TAHUNAJARAN
+        Route::get('thn_ajaran-page', [AdminController::class,'thn_ajaran'])->name('thn.ajaran');
+        Route::post('thn_ajaran', [AdminController::class, 'tambah_thn_ajaran'])->name('thn.ajaran.post');
+        Route::post('thn_ajaran/{id}', [AdminController::class, 'edit_thn_ajaran'])->name('thn.ajaran.edit');
+	    Route::delete('hapus_thn_ajaran/{id}', [AdminController::class, 'hapus_thn_ajaran'])->name('thn.ajaran.hapus');
+
         Route::get('file-manager-page', 'fileManager')->name('file-manager');
         Route::get('point-of-sale-page', 'pointOfSale')->name('point-of-sale');
         Route::get('chat-page', 'chat')->name('chat');
