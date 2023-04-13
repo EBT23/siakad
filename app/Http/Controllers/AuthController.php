@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Request\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -48,4 +50,40 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('login');
     }
+
+
+    public function registerView()
+    {
+        return view('login.register');
+    }
+
+    public function register(Request $request)
+    {
+
+        // dd($request);
+        $request->validate(
+            [
+                'name' => 'required',
+                'tlp' => 'required',
+                'gender' => 'required',
+                'email' => 'required|unique:users,email',
+                'password' => 'required'
+            ]);
+            $data = [
+                'name' => $request->name,
+                'nis' => $request->tlp,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role_id' => 2,
+                'active' => 1,
+                'created_at' => now(),
+            ];
+        DB::table('users')->insert($data);
+        return redirect()->route('login.index')->withSuccess('Akun Berhasil dibuat');;
+
+    }
+
+
+
 }

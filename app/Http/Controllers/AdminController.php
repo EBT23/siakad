@@ -12,9 +12,7 @@ class AdminController extends Controller
     public function role()
     {
         $data['title'] = 'Role Management';
-
 		$role = DB::table('role')->get();
-
         return view('admin/role',  ['role' => $role], $data);
     }
 
