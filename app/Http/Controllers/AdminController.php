@@ -133,21 +133,46 @@ class AdminController extends Controller
    public function semester()
    {
     $data['title'] = 'Semester';
-
     $semester = DB::table('semester')->get();
-
     return view('admin/semester',  ['semester' => $semester], $data);
    }
 
+   public function tambah_semester(Request $request)
+   {
+       DB::table('semester')->insert([
+           'semester' => $request->nama_semester,
+           'created_at' => now(),
+       ]);
+       return redirect()
+           ->route('semester')
+           ->withSuccess('Semester berhasil di tambah');
+   }
 
+   public function edit_semester(Request $request, $id)
+   {
+       DB::table('semester')
+           ->where('id', $id)
+           ->update(['semester' => $request->nama_semester], ['updated_at' => now()]);
 
+       return redirect()
+           ->route('semester')
+           ->withSuccess('Semester berhasil di edit');
+   } 
+   
+   public function hapus_semester($id)
+   {
+        DB::table('semester')
+            ->where('id', $id)
+            ->delete();
+        return redirect()
+            ->route('semester')
+            ->withSuccess('Semester berhasil dihapus');
+   }
 
    public function thn_ajaran()
    {
     $data['title'] = 'Tahun Ajaran';
-
     $thn_ajaran = DB::table('thn_ajaran')->get();
-
     return view('admin/thn_ajaran',  ['thn_ajaran' => $thn_ajaran], $data);
    }
 }

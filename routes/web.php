@@ -65,6 +65,11 @@ Route::middleware('auth')->group(function() {
         Route::post('thn_ajaran/{id}', [AdminController::class, 'edit_thn_ajaran'])->name('thn.ajaran.edit');
 	    Route::delete('hapus_thn_ajaran/{id}', [AdminController::class, 'hapus_thn_ajaran'])->name('thn.ajaran.hapus');
 
+
+
+
+
+        
         Route::get('file-manager-page', 'fileManager')->name('file-manager');
         Route::get('point-of-sale-page', 'pointOfSale')->name('point-of-sale');
         Route::get('chat-page', 'chat')->name('chat');
