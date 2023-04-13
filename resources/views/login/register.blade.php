@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('head')
-    <title>Register - Rubick - Tailwind HTML Admin Template</title>
+    <title>Register - ADMIN</title>
 @endsection
 
 @section('content')
@@ -12,20 +12,19 @@
                 <a href="" class="-intro-x flex items-center pt-5">
                     <img alt="Midone - HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
                     <span class="text-white text-lg ml-3">
-                        Rubick
+                        SIAKAD
                     </span>
                 </a>
                 <div class="my-auto">
                     <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="{{ asset('dist/images/illustration.svg') }}">
-                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">A few more clicks to <br> sign up to your account.</div>
-                    <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">Manage all your e-commerce accounts in one place</div>
+                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">SISTEM AKADEMIK SD</div>
                 </div>
             </div>
             <!-- END: Register Info -->
             <!-- BEGIN: Register Form -->
             <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
                 <div class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">Sign Up</h2>
+                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left text-white">Sign Up</h2>
                     <div class="intro-x mt-2 text-slate-400 dark:text-slate-400 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
                     <form action="{{ route('register.store') }}" method="POST">
                         @csrf
@@ -42,8 +41,9 @@
                             <input type="email" name="email" id="email" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Email">
                             <input type="password" name="password" name="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password">
                         </div>
-                        <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                            <button type="submit" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
+                        <div class="intro-x mt-1 xl:mt-2 text-center xl:text-left ">
+                            <button type="submit" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top text-white">Register</button>
+                            <a  href="{{ route('login.index') }}" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top text-white">Login</a>
                         </div>
                     </form>
                 </div>
