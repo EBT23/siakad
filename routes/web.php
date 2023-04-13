@@ -53,17 +53,33 @@ Route::middleware('auth')->group(function() {
         Route::post('mapel', [AdminController::class, 'tambah_mapel'])->name('mapel.post');
         Route::post('mapel/{id}', [AdminController::class, 'edit_mapel'])->name('mapel.edit');
 	    Route::delete('hapus_mapel/{id}', [AdminController::class, 'hapus_mapel'])->name('mapel.hapus');
+        
+        //MAPEL
+        Route::get('jadwal_mapel', [AdminController::class,'jadwal_mapel'])->name('jadwal.mapel');
+        // Route::post('jadwal_mapel', [AdminController::class, 'tambah_jadwal_mapel'])->name('jadwal.mapel.post');
+        // Route::post('jadwal_mapel/{id}', [AdminController::class, 'edit_jadwal_mapel'])->name('jadwal.mapel.edit');
+	    // Route::delete('hapus_jadwal_mapel/{id}', [AdminController::class, 'hapus_jadwal_mapel'])->name('jadwal.mapel.hapus');
        
         //SEMESTER
         Route::get('semester-page', [AdminController::class,'semester'])->name('semester');
         Route::post('semester', [AdminController::class, 'tambah_semester'])->name('semester.post');
         Route::post('semester/{id}', [AdminController::class, 'edit_semester'])->name('semester.edit');
 	    Route::delete('hapus_semester/{id}', [AdminController::class, 'hapus_semester'])->name('semester.hapus');
+
         //TAHUNAJARAN
         Route::get('thn_ajaran-page', [AdminController::class,'thn_ajaran'])->name('thn.ajaran');
         Route::post('thn_ajaran', [AdminController::class, 'tambah_thn_ajaran'])->name('thn.ajaran.post');
         Route::post('thn_ajaran/{id}', [AdminController::class, 'edit_thn_ajaran'])->name('thn.ajaran.edit');
 	    Route::delete('hapus_thn_ajaran/{id}', [AdminController::class, 'hapus_thn_ajaran'])->name('thn.ajaran.hapus');
+        
+        //KRS
+        Route::get('krs', [AdminController::class,'krs'])->name('krs');
+       
+        //ABSENSI
+        Route::get('absensi', [AdminController::class,'absensi'])->name('absensi');
+        
+        //NILAI
+        Route::get('nilai', [AdminController::class,'nilai'])->name('nilai');
 
         Route::get('file-manager-page', 'fileManager')->name('file-manager');
         Route::get('point-of-sale-page', 'pointOfSale')->name('point-of-sale');

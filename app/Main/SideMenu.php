@@ -101,6 +101,14 @@ class SideMenu
                 ],
                 'title' => 'Kelola Mata Pelajaran'
             ],
+            'Jadwal Mapel' => [
+                'icon' => 'calender',
+                'route_name' => 'jadwal.mapel',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Jadwal Mapel'
+            ],
             'Semester' => [
                 'icon' => 'wind',
                 'route_name' => 'semester',
@@ -116,6 +124,30 @@ class SideMenu
                     'layout' => 'side-menu'
                 ],
                 'title' => 'Tahun Ajaran'
+            ],
+            'KRS' => [
+                'icon' => 'codesandbox',
+                'route_name' => 'krs',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'KRS'
+            ],
+            'Absensi' => [
+                'icon' => 'clipboard',
+                'route_name' => 'absensi',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Absensi'
+            ],
+            'Nilai' => [
+                'icon' => 'activity',
+                'route_name' => 'nilai',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Nilai'
             ],
             // 'inbox' => [
             //     'icon' => 'inbox',
@@ -157,14 +189,14 @@ class SideMenu
             //     ],
             //     'title' => 'Post'
             // ],
-            'calendar' => [
-                'icon' => 'calendar',
-                'route_name' => 'calendar',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Calendar'
-            ],
+            // 'calendar' => [
+            //     'icon' => 'calendar',
+            //     'route_name' => 'calendar',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Calendar'
+            // ],
             'devider',
             // 'crud' => [
             //     'icon' => 'edit',
