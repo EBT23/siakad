@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class AdminController extends Controller
 {
@@ -128,6 +129,16 @@ class AdminController extends Controller
             ->withSuccess('Mapel berhasil dihapus');
    }
 
+   public function jadwal_mapel()
+   {
+        $data['title'] = 'Kelola Jadwal Mapel';
+
+        // $jadwal_mapel = DB::table('jadwal_mapel')->get();
+
+        return view('admin.jadwal_mapel', $data);
+
+   }
+
    public function semester()
    {
     $data['title'] = 'Semester';
@@ -135,37 +146,8 @@ class AdminController extends Controller
     return view('admin/semester',  ['semester' => $semester], $data);
    }
 
-   public function tambah_semester(Request $request)
-   {
-       DB::table('semester')->insert([
-           'semester' => $request->nama_semester,
-           'created_at' => now(),
-       ]);
-       return redirect()
-           ->route('semester')
-           ->withSuccess('Semester berhasil di tambah');
-   }
 
-   public function edit_semester(Request $request, $id)
-   {
-       DB::table('semester')
-           ->where('id', $id)
-           ->update(['semester' => $request->nama_semester], ['updated_at' => now()]);
 
-       return redirect()
-           ->route('semester')
-           ->withSuccess('Semester berhasil di edit');
-   } 
-   
-   public function hapus_semester($id)
-   {
-        DB::table('semester')
-            ->where('id', $id)
-            ->delete();
-        return redirect()
-            ->route('semester')
-            ->withSuccess('Semester berhasil dihapus');
-   }
 
    public function thn_ajaran()
    {
@@ -173,38 +155,4 @@ class AdminController extends Controller
     $thn_ajaran = DB::table('thn_ajaran')->get();
     return view('admin/thn_ajaran',  ['thn_ajaran' => $thn_ajaran], $data);
    }
-
-   public function tambah_thn_ajaran(Request $request)
-   {
-       DB::table('thn_ajaran')->insert([
-           'tahun_ajaran' => $request->thn_ajaran,
-           'created_at' => now(),
-       ]);
-       return redirect()
-           ->route('thn.ajaran')
-           ->withSuccess('Tahun Ajaran berhasil di tambah');
-   }
-
-   public function edit_thn_ajaran(Request $request, $id)
-   {
-       DB::table('thn_ajaran')
-           ->where('id', $id)
-           ->update(['tahun_ajaran' => $request->thn_ajaran], ['updated_at' => now()]);
-
-       return redirect()
-           ->route('thn.ajaran')
-           ->withSuccess('Tahun Ajaran berhasil di edit');
-   } 
-
-   public function hapus_thn_ajaran($id)
-   {
-        DB::table('thn_ajaran')
-            ->where('id', $id)
-            ->delete();
-        return redirect()
-            ->route('thn.ajaran')
-            ->withSuccess('Tahun Akjaran berhasil dihapus');
-   }
-
-
 }
