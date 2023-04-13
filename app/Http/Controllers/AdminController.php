@@ -175,4 +175,38 @@ class AdminController extends Controller
     $thn_ajaran = DB::table('thn_ajaran')->get();
     return view('admin/thn_ajaran',  ['thn_ajaran' => $thn_ajaran], $data);
    }
+
+   public function tambah_thn_ajaran(Request $request)
+   {
+       DB::table('thn_ajaran')->insert([
+           'tahun_ajaran' => $request->thn_ajaran,
+           'created_at' => now(),
+       ]);
+       return redirect()
+           ->route('thn.ajaran')
+           ->withSuccess('Tahun Ajaran berhasil di tambah');
+   }
+
+   public function edit_thn_ajaran(Request $request, $id)
+   {
+       DB::table('thn_ajaran')
+           ->where('id', $id)
+           ->update(['tahun_ajaran' => $request->thn_ajaran], ['updated_at' => now()]);
+
+       return redirect()
+           ->route('thn.ajaran')
+           ->withSuccess('Tahun Ajaran berhasil di edit');
+   } 
+
+   public function hapus_thn_ajaran($id)
+   {
+        DB::table('thn_ajaran')
+            ->where('id', $id)
+            ->delete();
+        return redirect()
+            ->route('thn.ajaran')
+            ->withSuccess('Tahun Akjaran berhasil dihapus');
+   }
+
+
 }
