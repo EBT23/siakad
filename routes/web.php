@@ -81,6 +81,11 @@ Route::middleware('auth')->group(function() {
         //NILAI
         Route::get('nilai', [AdminController::class,'nilai'])->name('nilai');
 
+
+
+
+
+        
         Route::get('file-manager-page', 'fileManager')->name('file-manager');
         Route::get('point-of-sale-page', 'pointOfSale')->name('point-of-sale');
         Route::get('chat-page', 'chat')->name('chat');

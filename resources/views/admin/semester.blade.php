@@ -168,38 +168,37 @@
     <!-- END: Delete Confirmation Modal -->
 
                                         <!-- BEGIN: Modal Toggle -->
-                                       
-                                        <!-- END: Modal Toggle -->
-                                        <!-- BEGIN: Modal Content -->
-                                        <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <!-- BEGIN: Modal Header -->
-                                                    <div class="modal-header">
-                                                        <h2 class="font-medium text-base mr-auto">Add Semester</h2>
-                                                    </div>
-                                                    <!-- END: Modal Header -->
-                                                    <!-- BEGIN: Modal Body -->
-                                                    <form action="{{ route('semester.post') }}" method="POST">
-                                                        @csrf
-                                                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                                        <div class="col-span-12 sm:col-span-lg">
-                                                            <label for="semester">Semester</label>
-                                                            <input id="semester" name="semester" type="text" class="form-control" 
-                                                            aria-describedby="semester" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary w-20">Simpan</button>
-                                                    </div>
-                                                    </form>
-                                                    <!-- END: Modal Body -->
-                                                    <!-- BEGIN: Modal Footer -->
-                                                    <!-- END: Modal Footer -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END: Modal Content -->
+<!-- END: Modal Toggle -->
+<!-- BEGIN: Modal Content -->
+<div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <!-- BEGIN: Modal Header -->
+        <div class="modal-header">
+            <h2 class="font-medium text-base mr-auto">Add Semester</h2>
+        </div>
+        <!-- END: Modal Header -->
+        <!-- BEGIN: Modal Body -->
+        <form action="{{ route('semester.post') }}" method="POST">
+            @csrf
+        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+            <div class="col-span-12 sm:col-span-lg">
+                <label for="semester">Semester</label>
+                <input id="semester" name="semester" type="text" class="form-control" 
+                aria-describedby="semester" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+            <button type="submit" class="btn btn-primary w-20">Simpan</button>
+        </div>
+        </form>
+        <!-- END: Modal Body -->
+        <!-- BEGIN: Modal Footer -->
+        <!-- END: Modal Footer -->
+    </div>
+</div>
+</div>
+<!-- END: Modal Content -->
 
 @endsection

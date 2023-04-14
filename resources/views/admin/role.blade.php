@@ -93,55 +93,7 @@
             </table>
         </div>
         <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevrons-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevron-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevron-right"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="w-4 h-4" data-lucide="chevrons-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
-        </div>
-        <!-- END: Pagination -->
+    
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -167,45 +119,36 @@
     </div>
     <!-- END: Delete Confirmation Modal -->
 
-                                        <!-- BEGIN: Modal Toggle -->
-                                       
-                                        <!-- END: Modal Toggle -->
-                                        <!-- BEGIN: Modal Content -->
-                                        <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <!-- BEGIN: Modal Header -->
-                                                    <div class="modal-header">
-                                                        <h2 class="font-medium text-base mr-auto">Add Role</h2>
-                                                    </div>
-                                                    <!-- END: Modal Header -->
-                                                    <!-- BEGIN: Modal Body -->
-                                                    <form action="{{ route('role.post') }}" method="POST">
-                                                        @csrf
-                                                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                                        <div class="col-span-12 sm:col-span-lg">
-                                                            <label for="role">Nama Role</label>
-                                                            <input id="role" name="role" type="text" class="form-control" 
-                                                            aria-describedby="nama_role" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary w-20">Simpan</button>
-                                                    </div>
-                                                    </form>
-                                                    <!-- END: Modal Body -->
-                                                    <!-- BEGIN: Modal Footer -->
-                                                    <!-- END: Modal Footer -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END: Modal Content -->
-
-
-                                    
-                                       
-                                    
+                                      
+    <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- BEGIN: Modal Header -->
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Add Role</h2>
+                </div>
+                <!-- END: Modal Header -->
+                <!-- BEGIN: Modal Body -->
+                <form action="{{ route('role.post') }}" method="POST">
+                    @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                    <div class="col-span-12 sm:col-span-lg">
+                        <label for="role">Nama Role</label>
+                        <input id="role" name="role" type="text" class="form-control" 
+                        aria-describedby="nama_role" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                    <button type="submit" class="btn btn-primary w-20">Simpan</button>
+                </div>
+                </form>
+                <!-- END: Modal Body -->
+                <!-- BEGIN: Modal Footer -->
+                <!-- END: Modal Footer -->
+            </div>
+        </div>
+    </div>
                                 
                                     
                                 
