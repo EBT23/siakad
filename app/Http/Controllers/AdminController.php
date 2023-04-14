@@ -131,11 +131,17 @@ class AdminController extends Controller
 
    public function jadwal_mapel()
    {
-        $data['title'] = 'Kelola Jadwal Mapel';
+    $data['title'] = 'Kelola Jadwal Mapel';
 
-        // $jadwal_mapel = DB::table('jadwal_mapel')->get();
+    $jadwal_mapel = DB::table('jadwal_mapel')
+    ->join('kelas', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_kelas')
+    ->join('mapel', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_mapel')
+    ->join('semester', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_semester')
+    ->join('thn_ajaran', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_thn_ajaran')
+    ->select('kelas.kelas', 'semester.semester','mapel.nama_mapel','thn_ajaran.tahun_ajaran','jadwal_mapel.dari','jadwal_mapel.sampai')
+    ->get();
 
-        return view('admin.jadwal_mapel', $data);
+     return view('admin.jadwal_mapel', ['jadwal_mapel' => $jadwal_mapel], $data);
 
    }
 
