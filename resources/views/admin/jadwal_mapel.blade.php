@@ -51,15 +51,15 @@
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                             </td>
                             <td>
+                                <a href="" class="font-medium whitespace-nowrap">{{ $jm->nama_mapel }}</a>
+                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
+                            </td>
+                            <td>
                                 <a href="" class="font-medium whitespace-nowrap">{{ $jm->semester }}</a>
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                             </td>
                             <td>
                                 <a href="" class="font-medium whitespace-nowrap">{{ $jm->tahun_ajaran }}</a>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
-                            </td>
-                            <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $jm->nama_mapel }}</a>
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                             </td>
                             <td>
@@ -81,7 +81,7 @@
                                             <div class="modal-content">
                                                 <!-- BEGIN: Modal Header -->
                                                 <div class="modal-header">
-                                                    <h2 class="font-medium text-base mr-auto">Edit Role</h2>
+                                                    <h2 class="font-medium text-base mr-auto">Edit Jadwal Mapel</h2>
                                                 </div>
                                                 <!-- END: Modal Header -->
                                                 <!-- BEGIN: Modal Body -->
@@ -90,7 +90,7 @@
                                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                                                     <div class="col-span-12 sm:col-span-lg">
                                                         <label for="role">Nama Role</label>
-                                                        <input id="role" value="{{ $jm->role }}" name="role" type="text" class="form-control">
+                                                        <input id="role" value="" name="role" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 <!-- BEGIN: Modal Footer -->

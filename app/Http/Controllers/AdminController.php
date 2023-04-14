@@ -133,33 +133,118 @@ class AdminController extends Controller
    {
         $data['title'] = 'Kelola Jadwal Mapel';
 
-        $jadwal_mapel = DB::table('jadwal_mapel')
-        ->join('kelas','jadwal_mapel.id', '=', 'jadwal_mapel.id_kelas')
-        ->join('semester','jadwal_mapel.id', '=', 'jadwal_mapel.id_semester')
-        ->join('thn_ajaran','jadwal_mapel.id', '=', 'jadwal_mapel.id_thn_ajaran')
-        ->join('mapel','jadwal_mapel.id', '=', 'jadwal_mapel.id_mapel')
-        ->select('semester.semester','kelas.kelas','thn_ajaran.tahun_ajaran','mapel.nama_mapel', 'jadwal_mapel.dari','jadwal_mapel.sampai')
-        
-        ->get();
+        // $jadwal_mapel = DB::table('jadwal_mapel')->get();
 
-        return view('admin.jadwal_mapel',['jadwal_mapel' => $jadwal_mapel], $data);
+        return view('admin.jadwal_mapel', $data);
 
    }
 
    public function semester()
    {
     $data['title'] = 'Semester';
+
     $semester = DB::table('semester')->get();
+
     return view('admin/semester',  ['semester' => $semester], $data);
    }
 
+   public function tambah_semester(Request $request)
+   {
+        DB::table('semester')->insert([
+            'semester' => $request->semester,
+            'created_at' => now(),
+        ]);
+        return redirect()
+            ->route('semester')
+            ->withSuccess('Semester berhasil di tambah');
+   }
 
+   public function edit_semester(Request $request, $id)
+   {
+        DB::table('semester')
+            ->where('id', $id)
+            ->update(['semester' => $request->semester], ['updated_at' => now()]);
 
+        return redirect()
+            ->route('semester')
+            ->withSuccess('Semester berhasil di edit');
+   }
+
+   public function hapus_semester($id)
+   {
+        DB::table('semester')
+            ->where('id', $id)
+            ->delete();
+        return redirect()
+            ->route('semester')
+            ->withSuccess('Semester berhasil dihapus');
+   }
 
    public function thn_ajaran()
    {
     $data['title'] = 'Tahun Ajaran';
+
     $thn_ajaran = DB::table('thn_ajaran')->get();
+
     return view('admin/thn_ajaran',  ['thn_ajaran' => $thn_ajaran], $data);
+   }
+
+   public function tambah_thn_ajaran(Request $request)
+   {
+    DB::table('thn_ajaran')->insert([
+        'tahun_ajaran' => $request->tahun_ajaran,
+        'created_at' => now(),
+    ]);
+    return redirect()
+        ->route('thn.ajaran')
+        ->withSuccess('Tahun ajaran berhasil di tambah');
+   }
+   
+   public function edit_thn_ajaran(Request $request, $id)
+   {
+    DB::table('thn_ajaran')
+        ->where('id', $id)
+        ->update(['tahun_ajaran' => $request->tahun_ajaran], ['updated_at' => now()]);
+
+    return redirect()
+        ->route('thn.ajaran')
+        ->withSuccess('Tahun ajaran berhasil di edit');
+   }
+
+   public function hapus_thn_ajaran($id)
+   {
+        DB::table('thn_ajaran')
+            ->where('id', $id)
+            ->delete();
+        return redirect()
+            ->route('thn.ajaran')
+            ->withSuccess('Tahun ajaran berhasil dihapus');
+   }
+
+   public function krs()
+   {
+        $data['title'] = 'Kelola KRS';
+
+        $krs = DB::table('krs')->get();
+
+        return view('admin/krs',  ['krs' => $krs], $data);
+   }
+
+   public function absensi()
+   {
+        $data['title'] = 'Kelola Absensi';
+
+        $absensi = DB::table('absensi')->get();
+
+        return view('admin/absensi',  ['absensi' => $absensi], $data);
+   }
+
+   public function nilai()
+   {
+        $data['title'] = 'Kelola Nilai';
+
+        $nilai = DB::table('nilai')->get();
+
+        return view('admin/nilai',  ['nilai' => $nilai], $data);
    }
 }
