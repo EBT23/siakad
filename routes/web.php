@@ -56,9 +56,9 @@ Route::middleware('auth')->group(function() {
         
         //MAPEL
         Route::get('jadwal_mapel', [AdminController::class,'jadwal_mapel'])->name('jadwal.mapel');
-        // Route::post('jadwal_mapel', [AdminController::class, 'tambah_jadwal_mapel'])->name('jadwal.mapel.post');
-        // Route::post('jadwal_mapel/{id}', [AdminController::class, 'edit_jadwal_mapel'])->name('jadwal.mapel.edit');
-	    // Route::delete('hapus_jadwal_mapel/{id}', [AdminController::class, 'hapus_jadwal_mapel'])->name('jadwal.mapel.hapus');
+        Route::post('jadwal_mapel', [AdminController::class, 'tambah_jadwal_mapel'])->name('jadwal.mapel.post');
+        Route::post('jadwal_mapel/{id}', [AdminController::class, 'edit_jadwal_mapel'])->name('jadwal.mapel.edit');
+	    Route::delete('hapus_jadwal_mapel/{id}', [AdminController::class, 'hapus_jadwal_mapel'])->name('jadwal.mapel.hapus');
        
         //SEMESTER
         Route::get('semester-page', [AdminController::class,'semester'])->name('semester');

@@ -132,25 +132,59 @@ class AdminController extends Controller
    public function jadwal_mapel()
    {
     $data['title'] = 'Kelola Jadwal Mapel';
+    $kelas = DB::table('kelas')->get();
+    $semester = DB::table('semester')->get();
+    $thn_ajaran = DB::table('thn_ajaran')->get();
+    $mapel = DB::table('mapel')->get();
+    $jadwal_mapel = DB::select('SELECT jadwal_mapel.*,jadwal_mapel.id_mapel, kelas.id, kelas.kelas as kl,mapel.id, mapel.nama_mapel as mp, semester.semester as sm,kelas.id, thn_ajaran.tahun_ajaran as ta FROM jadwal_mapel, kelas, semester, thn_ajaran, mapel WHERE jadwal_mapel.id_mapel = mapel.id AND jadwal_mapel.id_kelas = kelas.id AND jadwal_mapel.id_semester = semester.id AND jadwal_mapel.id_thn_ajaran=thn_ajaran.id;');
 
-    $jadwal_mapel = DB::table('jadwal_mapel')
-    ->join('kelas', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_kelas')
-    ->join('mapel', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_mapel')
-    ->join('semester', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_semester')
-    ->join('thn_ajaran', 'jadwal_mapel.id', '=', 'jadwal_mapel.id_thn_ajaran')
-    ->select('kelas.kelas', 'semester.semester','mapel.nama_mapel','thn_ajaran.tahun_ajaran','jadwal_mapel.dari','jadwal_mapel.sampai')
-    ->get();
-
-     return view('admin.jadwal_mapel', ['jadwal_mapel' => $jadwal_mapel], $data);
+     return view('admin.jadwal_mapel', [
+    'jadwal_mapel' => $jadwal_mapel,
+    'kelas' => $kelas,
+    'semester' => $semester,
+    'thn_ajaran' => $thn_ajaran,
+    'mapel' => $mapel,], $data);
 
    }
 
+   public function tambah_jadwal_mapel(Request $request)
+   {
+
+       DB::table('jadwal_mapel')->insert([
+           'id_kelas' => $request->id_kelas,
+           'id_semester' => $request->id_semester,
+           'id_thn_ajaran' => $request->id_thn_ajaran,
+           'id_mapel' => $request->id_mapel,
+           'dari' => $request->dari,
+           'sampai' => $request->sampai,
+           'created_at' => now(),
+       ]);
+       return redirect()
+           ->route('jadwal.mapel')
+           ->withSuccess('Jadwal berhasil di tambah');
+   }
+   public function edit_jadwal_mapel(Request $request, $id)
+   {
+// dd($request);
+    DB::table('jadwal_mapel')
+    ->where('id', $id)
+    ->update(
+    ['id_kelas' => $request->id_kelas], 
+    ['id_mapel' => $request->id_mapel], 
+    ['id_semester' => $request->id_semester], 
+    ['id_thn_ajaran' => $request->id_thn_ajaran], 
+    ['dari' => $request->dari], 
+    ['sampai' => $request->sampai], 
+    ['updated_at' => now()]);
+return redirect()
+    ->route('jadwal.mapel')
+    ->withSuccess('Jadwal berhasil di edit');
+   
+     }
    public function semester()
    {
     $data['title'] = 'Semester';
-
     $semester = DB::table('semester')->get();
-
     return view('admin/semester',  ['semester' => $semester], $data);
    }
 
