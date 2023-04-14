@@ -102,7 +102,7 @@ class SideMenu
                 'title' => 'Kelola Mata Pelajaran'
             ],
             'Jadwal Mapel' => [
-                'icon' => 'calender',
+                'icon' => 'calendar',
                 'route_name' => 'jadwal.mapel',
                 'params' => [
                     'layout' => 'side-menu'

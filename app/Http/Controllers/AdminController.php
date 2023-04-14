@@ -135,9 +135,16 @@ class AdminController extends Controller
    {
         $data['title'] = 'Kelola Jadwal Mapel';
 
-        // $jadwal_mapel = DB::table('jadwal_mapel')->get();
+        $jadwal_mapel = DB::table('jadwal_mapel')
+        ->join('kelas','jadwal_mapel.id', '=', 'jadwal_mapel.id_kelas')
+        ->join('semester','jadwal_mapel.id', '=', 'jadwal_mapel.id_semester')
+        ->join('thn_ajaran','jadwal_mapel.id', '=', 'jadwal_mapel.id_thn_ajaran')
+        ->join('mapel','jadwal_mapel.id', '=', 'jadwal_mapel.id_mapel')
+        ->select('semester.semester','kelas.kelas','thn_ajaran.tahun_ajaran','mapel.nama_mapel', 'jadwal_mapel.dari','jadwal_mapel.sampai')
+        
+        ->get();
 
-        return view('admin.jadwal_mapel', $data);
+        return view('admin.jadwal_mapel',['jadwal_mapel' => $jadwal_mapel], $data);
 
    }
 
