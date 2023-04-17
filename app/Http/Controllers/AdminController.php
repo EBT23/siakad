@@ -284,11 +284,33 @@ return redirect()
    public function krs()
    {
         $data['title'] = 'Kelola KRS';
-
+        $users = DB::table('users')->get();
+        $mapel = DB::table('mapel')->get();
         $krs = DB::table('krs')->get();
-
-        return view('admin/krs',  ['krs' => $krs], $data);
+        return view('admin/krs',['krs' => $krs,'users' => $users,'mapel' => $mapel], $data);
    }
+
+   public function tambah_krs(Request $request)
+   {
+    DB::table('krs')->insert([
+        'tahun_ajaran' => $request->tahun_ajaran,
+        'created_at' => now(),
+    ]);
+    return redirect()
+        ->route('thn.ajaran')
+        ->withSuccess('Tahun ajaran berhasil di tambah');
+   }
+
+   public function hapus_krs($id)
+   {
+        DB::table('krs')
+            ->where('id', $id)
+            ->delete();
+        return redirect()
+            ->route('krs')
+            ->withSuccess('Semester berhasil dihapus');
+   }
+
 
    public function absensi()
    {
@@ -302,9 +324,7 @@ return redirect()
    public function nilai()
    {
         $data['title'] = 'Kelola Nilai';
-
         $nilai = DB::table('nilai')->get();
-
         return view('admin/nilai',  ['nilai' => $nilai], $data);
    }
 }

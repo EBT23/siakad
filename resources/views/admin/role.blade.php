@@ -119,7 +119,6 @@
     </div>
     <!-- END: Delete Confirmation Modal -->
 
-                                      
     <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

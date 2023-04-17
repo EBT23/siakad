@@ -74,6 +74,9 @@ Route::middleware('auth')->group(function() {
         
         //KRS
         Route::get('krs', [AdminController::class,'krs'])->name('krs');
+        Route::post('krs', [AdminController::class, 'tambah_krs'])->name('krs.post');
+	    Route::delete('hapus_krs/{id}', [AdminController::class, 'hapus_krs'])->name('krs.hapus');
+
        
         //ABSENSI
         Route::get('absensi', [AdminController::class,'absensi'])->name('absensi');
