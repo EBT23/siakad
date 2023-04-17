@@ -29,7 +29,7 @@
     <table class="table table-report -mt-2">
         <thead>
             <tr>
-                <th class="whitespace-nowrap">ID</th>
+                <th class="whitespace-nowrap">No</th>
                 <th class="whitespace-nowrap">Kelas</th>
                 <th class="text-center whitespace-nowrap">Semester</th>
                 <th class="text-center whitespace-nowrap">Tahun Ajaran</th>
@@ -45,23 +45,23 @@
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
-                            {{ $no +1 }}
+                            {{-- {{ $no +1 }} --}}
                         </div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->kl }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->kelas }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->sm }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->semester }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->ta }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->tahun_ajaran }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->mp }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->nama_mapel }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
@@ -77,64 +77,7 @@
                             <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal" data-tw-target="#editModal1{{ $jm->id }}" >
                                 <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
-                             <!-- BEGIN: Edit Modal Content -->
-                             <div id="editModal1{{ $jm->id }}" class="modal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <!-- BEGIN: Modal Header -->
-                                        <div class="modal-header">
-                                            <h2 class="font-medium text-base mr-auto">Edit Jadwal Mata Pelajaran</h2>
-                                        </div>
-                                        <!-- END: Modal Header -->
-                                        <!-- BEGIN: Modal Body -->
-                                        <form action="{{ route('jadwal.mapel.edit', ['id' => $jm->id]) }}" method="POST">
-                                            @csrf
-                                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                            <label for="id_kelas">Kelas</label>
-                                            <select class="col-span-12 sm:col-span-lg" name="id_kelas" id="id_kelas" >
-                                                @foreach($kelas as $kl)
-                                                <option value="{{ $kl->id }}" {{ $kl->id == $jm->id_kelas ? 'selected' : '' }}  >{{ $kl->kelas }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="id_semester">Semester</label>
-                                            <select class="col-span-12 sm:col-span-lg" name="id_semester" id="id_semester" >
-                                                 @foreach($semester as $sm)
-                                                 <option value="{{ $sm->id }}" {{ $sm->id == $jm->id_semester ? 'selected' : '' }}  >{{ $sm->semester }}</option>
-                                                 @endforeach
-                                             </select>
-                                             <label for="nama_mapel">Mapel</label>
-                                             <select class="col-span-12 sm:col-span-lg" name="id_mapel" id="id_mapel" >
-                                                 @foreach($mapel as $mp)
-                                                 <option value="{{ $mp->id }}" {{ $mp->id == $jm->id_mapel ? 'selected' : '' }}  >{{ $mp->nama_mapel }}</option>
-                                                 @endforeach
-                                             </select>
-                                             <label for="id_thn_ajaran">Tahun Ajaran</label>
-                                           <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
-                                                @foreach($thn_ajaran as $ta)
-                                                <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{ $ta->tahun_ajaran }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="col-span-12 sm:col-span-lg">
-                                                <label for="dari">Dari</label>
-                                                <input id="dari" value="{{ $jm->dari }}" name="dari" type="date" class="form-control">
-                                            </div>
-                                            <div class="col-span-12 sm:col-span-lg">
-                                                <label for="sampai">Sampai</label>
-                                                <input id="sampai" value="{{ $jm->sampai }}" name="sampai" type="date" class="form-control">
-                                            </div>
-                                        </div>
-                                        <!-- BEGIN: Modal Footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                                            <button type="submit" class="btn btn-primary w-20">Simpan</button>
-                                        </div>
-                                        <!-- END: Modal Footer -->
-                                    </form>
-                                        <!-- END: Modal Body -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END: Modal Content -->
+                         
 
                             <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
                                 <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete
@@ -145,8 +88,68 @@
             @endforeach
         </tbody>
     </table>
-</div>
+    </div>
 <!-- END: Data List -->
+@foreach ($jadwal_mapel as $jm )
+<!-- BEGIN: Edit Modal Content -->
+<div id="editModal1{{ $jm->id }}" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- BEGIN: Modal Header -->
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">Edit Jadwal Mata Pelajaran</h2>
+            </div>
+            <!-- END: Modal Header -->
+            <!-- BEGIN: Modal Body -->
+            <form action="{{ route('jadwal.mapel.edit',['id' => $jm->id]) }}" method="POST">
+                @csrf
+            <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                <label for="id_kelas">Kelas</label>
+                <select class="col-span-12 sm:col-span-lg" name="id_kelas" id="id_kelas" >
+                    @foreach($kelas as $kl)
+                    <option value="{{ $kl->id }}" {{ $kl->id == $jm->id_kelas ? 'selected' : '' }}  >{{ $jm->kelas }}</option>
+                    @endforeach
+                </select>
+                <label for="id_semester">Semester</label>
+                <select class="col-span-12 sm:col-span-lg" name="id_semester" id="id_semester" >
+                     @foreach($semester as $sm)
+                     <option value="{{ $sm->id }}" {{ $sm->id == $jm->id_semester ? 'selected' : '' }}  >{{ $sm->semester }}</option>
+                     @endforeach
+                 </select>
+                 <label for="id_mapel">Mapel</label>
+                 <select class="col-span-12 sm:col-span-lg" name="id_mapel" id="id_mapel" >
+                     @foreach($mapel as $mp)
+                     <option value="{{ $mp->id }}" {{ $mp->id == $jm->id_mapel ? 'selected' : '' }}  >{{ $mp->nama_mapel }}</option>
+                     @endforeach
+                 </select>
+                 <label for="id_thn_ajaran">Tahun Ajaran</label>
+               <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
+                    @foreach($thn_ajaran as $ta)
+                    <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{ $ta->tahun_ajaran }}</option>
+                    @endforeach
+                </select>
+                <div class="col-span-12 sm:col-span-lg">
+                    <label for="dari">Dari</label>
+                    <input id="dari" value="{{ $jm->dari }}" name="dari" type="date" class="form-control">
+                </div>
+                <div class="col-span-12 sm:col-span-lg">
+                    <label for="sampai">Sampai</label>
+                    <input id="sampai" value="{{ $jm->sampai }}" name="sampai" type="date" class="form-control">
+                </div>
+            </div>
+            <!-- BEGIN: Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                <button type="submit" class="btn btn-primary w-20">Simpan</button>
+            </div>
+            <!-- END: Modal Footer -->
+        </form>
+            <!-- END: Modal Body -->
+        </div>
+    </div>
+</div>
+<!-- END: Modal Content -->
+@endforeach
  <!-- BEGIN: Delete Confirmation Modal -->
  <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -157,7 +160,7 @@
                     <div class="text-3xl mt-5">Apakah kamu yakin?</div>
                     <div class="text-slate-500 mt-2">Apakah Anda benar-benar ingin menghapus data ini? <br>Proses ini tidak dapat dibatalkan.</div>
                 </div>
-                <form action="" method="POST">
+                <form action="hapus_jadwal_mapel/{{ $jm->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                 <div class="px-5 pb-8 text-center">
