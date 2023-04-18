@@ -45,7 +45,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $kr->id_users }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $kr->name }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
@@ -71,13 +71,27 @@
                                         </div>
                                         <!-- END: Modal Header -->
                                         <!-- BEGIN: Modal Body -->
-                                        <form action="{{ route('role.edit', ['id' => $kr->id]) }}" method="POST">
+                                        <form action="{{ route('krs.edit', ['id' => $kr->id]) }}" method="POST">
                                             @csrf
                                         <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                            <div class="col-span-12 sm:col-span-lg">
-                                                <label for="role">Nama Role</label>
-                                                <input id="role" value="{{ $kr->id_users }}" name="role" type="text" class="form-control">
-                                            </div>
+                                            <label for="id_thn_ajaran">Siswa</label>
+                                            <select class="col-span-12 sm:col-span-lg" name="id_users" id="id_users" >
+                                                 @foreach($users as $us)
+                                                 <option value="{{ $us->id }}" {{ $us->id == $kr->id_users ? 'selected' : '' }}  >{{ $us->name }}</option>
+                                                 @endforeach
+                                             </select>
+                                            <label for="id_jadwal_mapel">Jadwal Mapel</label>
+                                            <select class="col-span-12 sm:col-span-lg" name="id_jadwal_mapel" id="id_jadwal_mapel" >
+                                                 @foreach($jadwalmapel as $jm)
+                                                 <option value="{{ $jm->id }}" {{ $jm->id == $kr->id_users ? 'selected' : '' }}  >{{ $jm->id }}</option>
+                                                 @endforeach
+                                             </select>
+                                            <label for="id_pengajar">Pengajar</label>
+                                            <select class="col-span-12 sm:col-span-lg" name="id_pengajar" id="id_pengajar" >
+                                                 @foreach($pengajar as $p)
+                                                 <option value="{{ $p->id }}" {{ $p->id == $kr->id_pengajar ? 'selected' : '' }}  >{{ $p->name }}</option>
+                                                 @endforeach
+                                             </select>
                                         </div>
                                         <!-- BEGIN: Modal Footer -->
                                         <div class="modal-footer">
@@ -128,6 +142,7 @@
 </div>
 <!-- END: Delete Confirmation Modal -->
 
+
 <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -140,22 +155,24 @@
             <form action="{{ route('krs.post') }}" method="POST">
                 @csrf
             <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                <label for="id_users">Nama User</label>
-                <select class="col-span-12 sm:col-span-lg" name="id_users" id="id_users" >
-                    @foreach($users as $us)
-                    <option value="" >{{ $us->name }}</option>
-                    @endforeach
-                </select>
-                <div class="col-span-12 sm:col-span-lg">
-                    <label for="role">Jadwal Mapel</label>
-                    <input id="id_jadwal" name="id_jadwal" type="text" class="form-control" 
-                    >
-                </div>
-                <div class="col-span-12 sm:col-span-lg">
-                    <label for="role">Nama Pengajar</label>
-                    <input id="role" name="role" type="text" class="form-control" 
-                    aria-describedby="nama_role" required>
-                </div>
+                    <select class="col-span-12 sm:col-span-lg" name="id_users" id="id_users" >
+                        <option selected>-pilih siswa-</option>
+                        @foreach($users as $us)
+                        <option value="{{ $us->id }}" >{{ $us->name }}</option>
+                        @endforeach
+                    </select>
+                    <select class="col-span-12 sm:col-span-lg" name="id_jadwal_mapel" id="id_jadwal_mapel" >
+                        <option selected>-pilih Mapel-</option>
+                        @foreach($jadwalmapel as $jm)
+                        <option value="{{ $jm->id }}" >{{ $jm->id }}</option>
+                        @endforeach
+                    </select>
+                    <select class="col-span-12 sm:col-span-lg" name="id_pengajar" id="id_pengajar" >
+                        <option selected>-pilih Pengajar-</option>
+                        @foreach($pengajar as $p)
+                        <option value="{{ $p->id }}" >{{ $p->name }}</option>
+                        @endforeach
+                    </select>
             </div>
             <div class="modal-footer">
                 <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>

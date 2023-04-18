@@ -284,22 +284,39 @@ return redirect()
    public function krs()
    {
         $data['title'] = 'Kelola KRS';
-        $users = DB::table('users')->get();
-        $mapel = DB::table('mapel')->get();
-        $krs = DB::table('krs')->get();
-        return view('admin/krs',['krs' => $krs,'users' => $users,'mapel' => $mapel], $data);
+        $krs = DB::select('SELECT users.name,krs.id, krs.id_users,krs.id_jadwal_mapel, krs.id_pengajar from users, krs where users.id=krs.id_users and users.role_id=2;');
+        $users = DB::select('select * from users where role_id = 2');
+        $pengajar = DB::select('select * from users where role_id = 3');
+        $jadwalmapel = DB::table('jadwal_mapel')->get();
+        // $krs = DB::table('krs')->get();
+        return view('admin/krs',['krs' => $krs,'users' => $users,'pengajar' => $pengajar,'jadwalmapel' => $jadwalmapel], $data);
    }
 
    public function tambah_krs(Request $request)
    {
     DB::table('krs')->insert([
-        'tahun_ajaran' => $request->tahun_ajaran,
+        'id_jadwal_mapel' => $request->id_jadwal_mapel,
+        'id_users' => $request->id_users,
+        'id_pengajar' => $request->id_pengajar,
         'created_at' => now(),
     ]);
     return redirect()
-        ->route('thn.ajaran')
+        ->route('krs')
         ->withSuccess('Tahun ajaran berhasil di tambah');
    }
+
+   public function edit_krs(Request $request, $id)
+   {
+    // dd($request);
+    DB::table('krs')
+        ->where('id', $id)
+        ->update(['id_users' => $request->id_users],['id_jadwal_mapel' => $request->id_jadwal_mapel],['id_pengajar' => $request->id_pengajar], ['updated_at' => now()]);
+
+    return redirect()
+        ->route('krs')
+        ->withSuccess('Krs berhasil di edit');
+   }
+
 
    public function hapus_krs($id)
    {
