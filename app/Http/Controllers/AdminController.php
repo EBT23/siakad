@@ -284,10 +284,10 @@ return redirect()
    public function krs()
    {
         $data['title'] = 'Kelola KRS';
-        $krs = DB::select('SELECT users.name,krs.id, krs.id_users,krs.id_jadwal_mapel, krs.id_pengajar from users, krs where users.id=krs.id_users and users.role_id=2;');
-        $users = DB::select('select * from users where role_id = 2');
-        $pengajar = DB::select('select * from users where role_id = 3');
-        $jadwalmapel = DB::table('jadwal_mapel')->get();
+        $krs = DB::select('SELECT users.name as siswa,users.name as pengajar,krs.id, krs.id_users,krs.id_jadwal_mapel, krs.id_pengajar from users, krs where users.id=krs.id_users and users.role_id=3;');
+        $users = DB::select('SELECT name as siswa, users.id from users WHERE role_id=3;');
+        $pengajar = DB::select('SELECT name as pengajar, users.id from users WHERE role_id=2;');
+        $jadwalmapel = DB::select('SELECT jadwal_mapel.*, mapel.nama_mapel as mapel FROM mapel,jadwal_mapel WHERE jadwal_mapel.id_mapel=mapel.id;');
         // $krs = DB::table('krs')->get();
         return view('admin/krs',['krs' => $krs,'users' => $users,'pengajar' => $pengajar,'jadwalmapel' => $jadwalmapel], $data);
    }
@@ -302,7 +302,7 @@ return redirect()
     ]);
     return redirect()
         ->route('krs')
-        ->withSuccess('Tahun ajaran berhasil di tambah');
+        ->withSuccess('KRS berhasil di tambah');
    }
 
    public function edit_krs(Request $request, $id)
@@ -325,7 +325,7 @@ return redirect()
             ->delete();
         return redirect()
             ->route('krs')
-            ->withSuccess('Semester berhasil dihapus');
+            ->withSuccess('KRS berhasil dihapus');
    }
 
 

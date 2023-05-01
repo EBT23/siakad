@@ -45,7 +45,7 @@
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
-                            {{-- {{ $no +1 }} --}}
+                            {{ $no +1 }}
                         </div>
                     </td>
                     <td>

@@ -45,7 +45,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $kr->name }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $kr->siswa }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
@@ -77,19 +77,19 @@
                                             <label for="id_thn_ajaran">Siswa</label>
                                             <select class="col-span-12 sm:col-span-lg" name="id_users" id="id_users" >
                                                  @foreach($users as $us)
-                                                 <option value="{{ $us->id }}" {{ $us->id == $kr->id_users ? 'selected' : '' }}  >{{ $us->name }}</option>
+                                                 <option value="{{ $us->id }}" {{ $us->id == $kr->id_users ? 'selected' : '' }}  >{{ $us->siswa }}</option>
                                                  @endforeach
                                              </select>
                                             <label for="id_jadwal_mapel">Jadwal Mapel</label>
                                             <select class="col-span-12 sm:col-span-lg" name="id_jadwal_mapel" id="id_jadwal_mapel" >
                                                  @foreach($jadwalmapel as $jm)
-                                                 <option value="{{ $jm->id }}" {{ $jm->id == $kr->id_users ? 'selected' : '' }}  >{{ $jm->id }}</option>
+                                                 <option value="{{ $jm->id }}" {{ $jm->id == $kr->id_users ? 'selected' : '' }}  >{{ $jm->mapel }}</option>
                                                  @endforeach
                                              </select>
                                             <label for="id_pengajar">Pengajar</label>
                                             <select class="col-span-12 sm:col-span-lg" name="id_pengajar" id="id_pengajar" >
                                                  @foreach($pengajar as $p)
-                                                 <option value="{{ $p->id }}" {{ $p->id == $kr->id_pengajar ? 'selected' : '' }}  >{{ $p->name }}</option>
+                                                 <option value="{{ $p->id }}" {{ $p->id == $kr->id_users ? 'selected' : '' }}  >{{ $p->pengajar }}</option>
                                                  @endforeach
                                              </select>
                                         </div>
@@ -158,7 +158,7 @@
                     <select class="col-span-12 sm:col-span-lg" name="id_users" id="id_users" >
                         <option selected>-pilih siswa-</option>
                         @foreach($users as $us)
-                        <option value="{{ $us->id }}" >{{ $us->name }}</option>
+                        <option value="{{ $us->id }}" >{{ $us->siswa }}</option>
                         @endforeach
                     </select>
                     <select class="col-span-12 sm:col-span-lg" name="id_jadwal_mapel" id="id_jadwal_mapel" >
@@ -170,7 +170,7 @@
                     <select class="col-span-12 sm:col-span-lg" name="id_pengajar" id="id_pengajar" >
                         <option selected>-pilih Pengajar-</option>
                         @foreach($pengajar as $p)
-                        <option value="{{ $p->id }}" >{{ $p->name }}</option>
+                        <option value="{{ $p->id }}" >{{ $p->pengajar }}</option>
                         @endforeach
                     </select>
             </div>
