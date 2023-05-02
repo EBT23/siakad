@@ -128,7 +128,7 @@
                     <div class="text-3xl mt-5">Apakah kamu yakin?</div>
                     <div class="text-slate-500 mt-2">Apakah Anda benar-benar ingin menghapus data ini? <br>Proses ini tidak dapat dibatalkan.</div>
                 </div>
-                <form action="hapus_krs/{{ $kr->id }}" method="POST">
+                <form action="" method="POST">
                     @method('DELETE')
                     @csrf
                 <div class="px-5 pb-8 text-center">

@@ -185,7 +185,7 @@
                                                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                                                         <div class="col-span-12 sm:col-span-lg">
                                                             <label for="tahun_ajaran">Tahun Ajaran</label>
-                                                            <input id="tahun_ajaran" name="tahun_ajaran" type="date" class="form-control" 
+                                                            <input id="tahun_ajaran" name="tahun_ajaran" type="YEAR" class="form-control" 
                                                             aria-describedby="tahun_ajaran" required>
                                                         </div>
                                                     </div>

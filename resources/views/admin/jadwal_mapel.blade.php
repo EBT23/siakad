@@ -34,6 +34,7 @@
                 <th class="text-center whitespace-nowrap">Semester</th>
                 <th class="text-center whitespace-nowrap">Tahun Ajaran</th>
                 <th class="text-center whitespace-nowrap">Mapel</th>
+                <th class="text-center whitespace-nowrap">hari</th>
                 <th class="text-center whitespace-nowrap">Dari</th>
                 <th class="text-center whitespace-nowrap">Sampai</th>
                 <th class="text-center whitespace-nowrap">Actions</th>
@@ -57,11 +58,15 @@
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->tahun_ajaran }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{\Carbon\Carbon::parse($jm->tahun_ajaran)->format('Y') }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
                         <a href="" class="font-medium whitespace-nowrap">{{ $jm->nama_mapel }}</a>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
+                    </td>
+                    <td>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->hari }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
@@ -107,7 +112,7 @@
                 <label for="id_kelas">Kelas</label>
                 <select class="col-span-12 sm:col-span-lg" name="id_kelas" id="id_kelas" >
                     @foreach($kelas as $kl)
-                    <option value="{{ $kl->id }}" {{ $kl->id == $jm->id_kelas ? 'selected' : '' }}  >{{ $jm->kelas }}</option>
+                    <option value="{{ $kl->id }}" {{ $kl->id == $jm->id_kelas ? 'selected' : '' }}  >{{ $kl->kelas }}</option>
                     @endforeach
                 </select>
                 <label for="id_semester">Semester</label>
@@ -125,7 +130,7 @@
                  <label for="id_thn_ajaran">Tahun Ajaran</label>
                <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
                     @foreach($thn_ajaran as $ta)
-                    <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{ $ta->tahun_ajaran }}</option>
+                    <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{\Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
                     @endforeach
                 </select>
                 <div class="col-span-12 sm:col-span-lg">
@@ -203,27 +208,38 @@
                         <option value="{{ $sm->id }}" >{{ $sm->semester }}</option>
                         @endforeach
                     </select>
-                    <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
-                        <option selected>-pilih tahun ajaran-</option>
-                        @foreach($thn_ajaran as $ta)
-                        <option value="{{ $ta->id }}" >{{ $ta->tahun_ajaran }}</option>
-                        @endforeach
-                    </select>
                     <select class="col-span-12 sm:col-span-lg" name="id_mapel" id="id_semester" >
                         <option selected>-pilih mapel-</option>
                         @foreach($mapel as $mp)
                         <option value="{{ $mp->id }}" >{{ $mp->nama_mapel }}</option>
                         @endforeach
                     </select>
+
+                    <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
+                        <option selected>-pilih tahun ajaran-</option>
+                        @foreach($thn_ajaran as $ta)
+                        <option value="{{ $ta->id }}" >{{\Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
+                        @endforeach
+                    </select>
+                   
+                    <select class="col-span-12 sm:col-span-lg" name="hari" id="hari" >
+                        <option selected>-pilih Hari-</option>
+                        <option value="senin" >senin</option>
+                        <option value="selasa" >selasa</option>
+                        <option value="rabu" >rabu</option>
+                        <option value="kamis" >kamis</option>
+                        <option value="jum'at" >jum'at</option>
+                        <option value="sabtu" >sabtu</option>
+                    </select>
                    
                     <div class="col-span-12 sm:col-span-lg">
                         <label for="dari">Dari</label>
-                        <input id="dari" name="dari" type="date" class="form-control" 
+                        <input id="dari" name="dari" type="time" class="form-control" 
                         aria-describedby="dari" required>
                     </div>
                     <div class="col-span-12 sm:col-span-lg">
                         <label for="sampai">Sampai</label>
-                        <input id="sampai" name="sampai" type="date" class="form-control" 
+                        <input id="sampai" name="sampai" type="time" class="form-control" 
                         aria-describedby="sampai" required>
                     </div>
                     

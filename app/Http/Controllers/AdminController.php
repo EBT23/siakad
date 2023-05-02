@@ -161,6 +161,7 @@ class AdminController extends Controller
            'id_semester' => $request->id_semester,
            'id_thn_ajaran' => $request->id_thn_ajaran,
            'id_mapel' => $request->id_mapel,
+           'hari' => $request->hari,
            'dari' => $request->dari,
            'sampai' => $request->sampai,
            'created_at' => now(),
@@ -179,6 +180,7 @@ DB::table('jadwal_mapel')
     ['id_kelas' => $request->id_kelas], 
     ['id_semester' => $request->id_semester], 
     ['id_thn_ajaran' => $request->id_thn_ajaran], 
+    ['hari' => $request->hari], 
     ['dari' => $request->dari], 
     ['sampai' => $request->sampai], 
     ['updated_at' => now()]);
