@@ -172,7 +172,7 @@ class AdminController extends Controller
    }
    public function edit_jadwal_mapel(Request $request, $id)
    {
-// dd($id);
+// dd($id);rt
 DB::table('jadwal_mapel')
     ->where('id', $id)
     ->update(
