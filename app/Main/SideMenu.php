@@ -133,14 +133,7 @@ class SideMenu
                 ],
                 'title' => 'KRS'
             ],
-            'Absensi' => [
-                'icon' => 'clipboard',
-                'route_name' => 'absensi',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Absensi'
-            ],
+           
             'Nilai' => [
                 'icon' => 'activity',
                 'route_name' => 'nilai',

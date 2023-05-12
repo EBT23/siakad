@@ -34,7 +34,7 @@
                 <th class="text-center whitespace-nowrap">Semester</th>
                 <th class="text-center whitespace-nowrap">Tahun Ajaran</th>
                 <th class="text-center whitespace-nowrap">Mapel</th>
-                <th class="text-center whitespace-nowrap">hari</th>
+                <th class="text-center whitespace-nowrap">Hari</th>
                 <th class="text-center whitespace-nowrap">Dari</th>
                 <th class="text-center whitespace-nowrap">Sampai</th>
                 <th class="text-center whitespace-nowrap">Actions</th>
@@ -58,7 +58,7 @@
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{\Carbon\Carbon::parse($jm->tahun_ajaran)->format('Y') }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ \Carbon\Carbon::parse($jm->tahun_ajaran)->format('Y') }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
@@ -70,11 +70,11 @@
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->dari }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ \Carbon\Carbon::parse($jm->dari)->format('H:i') }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $jm->sampai }}</a>
+                        <a href="" class="font-medium whitespace-nowrap">{{ \Carbon\Carbon::parse($jm->sampai)->format('H:i') }}</a>
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5"></div>
                     </td>
                     <td class="table-report__action w-56">
@@ -130,16 +130,27 @@
                  <label for="id_thn_ajaran">Tahun Ajaran</label>
                <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
                     @foreach($thn_ajaran as $ta)
-                    <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{\Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
+                    <option value="{{ $ta->id }}" {{ $ta->id == $jm->id_thn_ajaran ? 'selected' : '' }}  >{{ \Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
                     @endforeach
+                </select>
+                
+                 <label for="hari">Hari</label>
+                 <select class="col-span-12 sm:col-span-lg" name="hari" id="hari" >
+                    <option value="{{ $jm->hari }}" selected >{{ $jm->hari }}</option>
+                    <option value="Selasa" >senin</option>
+                    <option value="Selasa" >Selasa</option>
+                    <option value="Rabu" >Rabu</option>
+                    <option value="Kamis" >Kamis</option>
+                    <option value="Jum'at" >Jum'at</option>
+                    <option value="Sabtu" >Sabtu</option>
                 </select>
                 <div class="col-span-12 sm:col-span-lg">
                     <label for="dari">Dari</label>
-                    <input id="dari" value="{{ $jm->dari }}" name="dari" type="date" class="form-control">
+                    <input id="dari" value="{{ \Carbon\Carbon::parse($jm->dari)->format('H:i') }}" name="dari" type="time" class="form-control">
                 </div>
                 <div class="col-span-12 sm:col-span-lg">
                     <label for="sampai">Sampai</label>
-                    <input id="sampai" value="{{ $jm->sampai }}" name="sampai" type="date" class="form-control">
+                    <input id="sampai" value="{{ \Carbon\Carbon::parse($jm->sampai)->format('H:i') }}" name="sampai" type="time" class="form-control">
                 </div>
             </div>
             <!-- BEGIN: Modal Footer -->
@@ -154,30 +165,30 @@
     </div>
 </div>
 <!-- END: Modal Content -->
-@endforeach
- <!-- BEGIN: Delete Confirmation Modal -->
- <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="p-5 text-center">
-                    <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                    <div class="text-3xl mt-5">Apakah kamu yakin?</div>
-                    <div class="text-slate-500 mt-2">Apakah Anda benar-benar ingin menghapus data ini? <br>Proses ini tidak dapat dibatalkan.</div>
-                </div>
-                <form action="hapus_jadwal_mapel/{{ $jm->id }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                <div class="px-5 pb-8 text-center">
-                    <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                    <button type="submit" class="btn btn-danger w-24">Delete</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<!-- BEGIN: Delete Confirmation Modal -->
+<div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-body p-0">
+               <div class="p-5 text-center">
+                   <i data-lucide="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
+                   <div class="text-3xl mt-5">Apakah kamu yakin?</div>
+                   <div class="text-slate-500 mt-2">Apakah Anda benar-benar ingin menghapus data ini? <br>Proses ini tidak dapat dibatalkan.</div>
+               </div>
+               <form action="hapus_jadwal_mapel/{{ $jm->id }}" method="POST">
+                   @method('DELETE')
+                   @csrf
+               <div class="px-5 pb-8 text-center">
+                   <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
+                   <button type="submit" class="btn btn-danger w-24">Delete</button>
+               </div>
+               </form>
+           </div>
+       </div>
+   </div>
 </div>
 <!-- END: Delete Confirmation Modal -->
+@endforeach
 
 
 
@@ -208,28 +219,27 @@
                         <option value="{{ $sm->id }}" >{{ $sm->semester }}</option>
                         @endforeach
                     </select>
-                    <select class="col-span-12 sm:col-span-lg" name="id_mapel" id="id_semester" >
+                    <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
+                        <option selected>-pilih tahun ajaran-</option>
+                        @foreach($thn_ajaran as $ta)
+                        <option value="{{ $ta->id }}" >{{ \Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
+                        @endforeach
+                    </select>
+                    <select class="col-span-12 sm:col-span-lg" name="id_mapel" id="id_mapel" >
                         <option selected>-pilih mapel-</option>
                         @foreach($mapel as $mp)
                         <option value="{{ $mp->id }}" >{{ $mp->nama_mapel }}</option>
                         @endforeach
                     </select>
 
-                    <select class="col-span-12 sm:col-span-lg" name="id_thn_ajaran" id="id_thn_ajaran" >
-                        <option selected>-pilih tahun ajaran-</option>
-                        @foreach($thn_ajaran as $ta)
-                        <option value="{{ $ta->id }}" >{{\Carbon\Carbon::parse($ta->tahun_ajaran)->format('Y') }}</option>
-                        @endforeach
-                    </select>
-                   
                     <select class="col-span-12 sm:col-span-lg" name="hari" id="hari" >
-                        <option selected>-pilih Hari-</option>
-                        <option value="senin" >senin</option>
-                        <option value="selasa" >selasa</option>
-                        <option value="rabu" >rabu</option>
-                        <option value="kamis" >kamis</option>
-                        <option value="jum'at" >jum'at</option>
-                        <option value="sabtu" >sabtu</option>
+                        <option selected>-pilih hari-</option>
+                        <option value="Senin" >Senin</option>
+                        <option value="Selasa" >Selasa</option>
+                        <option value="Rabu" >Rabu</option>
+                        <option value="Kamis" >Kamis</option>
+                        <option value="Jum'at" >Jum'at</option>
+                        <option value="Sabtu" >Sabtu</option>
                     </select>
                    
                     <div class="col-span-12 sm:col-span-lg">
