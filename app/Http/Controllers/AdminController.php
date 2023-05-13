@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\JadwalMapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -170,24 +171,35 @@ class AdminController extends Controller
            ->route('jadwal.mapel')
            ->withSuccess('Jadwal berhasil di tambah');
    }
+
    public function edit_jadwal_mapel(Request $request, $id)
    {
-// dd($request);
-DB::table('jadwal_mapel')
-    ->where('id', $id)
-    ->update(
-    ['id_mapel' => $request->id_mapel], 
-    ['id_kelas' => $request->id_kelas],  
-    ['id_semester' => $request->id_semester], 
-    ['id_thn_ajaran' => $request->id_thn_ajaran], 
-    ['hari' => $request->hari], 
-    ['dari' => $request->dari], 
-    ['sampai' => $request->sampai], 
-    ['updated_at' => now()]);
 
-return redirect()
-    ->route('jadwal.mapel')
-    ->withSuccess('Jadwal berhasil di edit');
+        $jadwal = JadwalMapel::findOrFail($id);
+
+        $request->validate([
+            'id_kelas' => 'required',
+            'id_mapel' => 'required',
+            'id_semester' => 'required',
+            'id_thn_ajaran' => 'required',
+            'hari' => 'required',
+            'dari' => 'required',
+            'sampai' => 'required',
+        ]);
+
+        $jadwal->id_kelas = $request->id_kelas;
+        $jadwal->id_mapel = $request->id_mapel;
+        $jadwal->id_semester = $request->id_semester;
+        $jadwal->id_thn_ajaran = $request->id_thn_ajaran;
+        $jadwal->hari = $request->hari;
+        $jadwal->dari = $request->dari;
+        $jadwal->sampai = $request->sampai;
+        
+        $jadwal->save();
+
+    return redirect()
+        ->route('jadwal.mapel')
+        ->withSuccess('Jadwal berhasil di edit');
    
      }
 
