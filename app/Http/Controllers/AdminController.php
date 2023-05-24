@@ -358,4 +358,17 @@ class AdminController extends Controller
         $nilai = DB::table('nilai')->get();
         return view('admin/nilai',  ['nilai' => $nilai], $data);
    }
+
+   public function tambah_nilai(Request $request)
+   {
+    DB::table('krs')->insert([
+        'id_jadwal_mapel' => $request->id_jadwal_mapel,
+        'id_users' => $request->id_users,
+        'id_pengajar' => $request->id_pengajar,
+        'created_at' => now(),
+    ]);
+    return redirect()
+        ->route('krs')
+        ->withSuccess('KRS berhasil di tambah');
+   }
 }

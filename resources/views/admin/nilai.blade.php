@@ -24,4 +24,34 @@
             </div>
         </div>
 
+        <div id="tambahModal" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- BEGIN: Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="font-medium text-base mr-auto">Add Role</h2>
+                    </div>
+                    <!-- END: Modal Header -->
+                    <!-- BEGIN: Modal Body -->
+                    <form action="{{ route('role.post') }}" method="POST">
+                        @csrf
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12 sm:col-span-lg">
+                            <label for="role">Nama Role</label>
+                            <input id="role" name="role" type="text" class="form-control" 
+                            aria-describedby="nama_role" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
+                        <button type="submit" class="btn btn-primary w-20">Simpan</button>
+                    </div>
+                    </form>
+                    <!-- END: Modal Body -->
+                    <!-- BEGIN: Modal Footer -->
+                    <!-- END: Modal Footer -->
+                </div>
+            </div>
+        </div>
+
 @endsection

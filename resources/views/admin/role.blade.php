@@ -25,7 +25,7 @@
         </div>
         <!-- BEGIN: Data List -->
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
+            <table class="table table-report -mt-2" table id="example"  width="100%">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">ID</th>
@@ -152,3 +152,6 @@
                                     
                                 
 @endsection
+<script>$(document).ready(function () {
+    $('#example').DataTable();
+});</script>

@@ -93,7 +93,7 @@
             </table>
         </div>
         <!-- END: Data List -->
-        <!-- BEGIN: Pagination -->
+        {{-- <!-- BEGIN: Pagination -->
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
             <nav class="w-full sm:w-auto sm:mr-auto">
                 <ul class="pagination">
@@ -141,7 +141,7 @@
                 <option>50</option>
             </select>
         </div>
-        <!-- END: Pagination -->
+        <!-- END: Pagination --> --}}
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">

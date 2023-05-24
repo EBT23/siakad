@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function() {
         
         //NILAI
         Route::get('nilai', [AdminController::class,'nilai'])->name('nilai');
+        Route::get('tambahnilai', [AdminController::class,'tambah_nilai'])->name('nilai.post');
 
 
 
