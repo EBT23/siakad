@@ -23,7 +23,7 @@ use App\Http\Controllers\AuthController;
 
         //ROLE
         Route::get('role-page', [AdminController::class,'role'])->name('role');
-        Route::post('role', [AdminController::class, 'tambah_role'])->name('role.post');
+        Route::post('role-post', [AdminController::class, 'tambah_role'])->name('role.post');
         Route::post('role/{id}', [AdminController::class, 'edit_role'])->name('role.edit');
 	    Route::delete('hapus_role/{id}', [AdminController::class, 'hapus_role'])->name('role.hapus');
 
