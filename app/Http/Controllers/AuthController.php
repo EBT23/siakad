@@ -16,9 +16,9 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function loginView()
+    public function login()
     {
-        return view('login.main', [
+        return view('auth.login', [
             'layout' => 'login'
         ]);
     }
@@ -29,7 +29,7 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function login(LoginRequest $request)
+    public function login_post(Request $request)
     {
         if (Auth::attempt([
             'email' => $request->email,
@@ -52,12 +52,12 @@ class AuthController extends Controller
     }
 
 
-    public function registerView()
+    public function register()
     {
-        return view('login.register');
+        return view('auth.register');
     }
 
-    public function register(Request $request)
+    public function register_post(Request $request)
     {
 
         // dd($request);

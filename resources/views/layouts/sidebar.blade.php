@@ -8,76 +8,76 @@
           </div>
           <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
             <span class="font-weight-semibold mb-1 mt-2 text-center">Antonio Olson</span>
-            <span class="text-secondary icon-sm text-center">$3499.00</span>
           </div>
         </a>
-      </li>
-      <li class="nav-item pt-3">
-        <a class="nav-link d-block" href="index.html">
-          <img class="sidebar-brand-logo" src="../assets/images/logo.svg" alt="" />
-          <img class="sidebar-brand-logomini" src="../assets/images/logo-mini.svg" alt="" />
-          <div class="small font-weight-light pt-1">Responsive Dashboard</div>
-        </a>
-        <form class="d-flex align-items-center" action="#">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <i class="input-group-text border-0 mdi mdi-magnify"></i>
-            </div>
-            <input type="text" class="form-control border-0" placeholder="Search" />
-          </div>
-        </form>
       </li>
       <li class="pt-2 pb-1">
-        <span class="nav-item-head">Template Pages</span>
+        <span class="nav-item-head">MENU</span>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link active" href="{{ route('dashboard') }}" active>
           <i class="mdi mdi-compass-outline menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-          <span class="menu-title">UI Elements</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="ui-basic">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" href="{{ route('role') }}">
           <i class="mdi mdi-contacts menu-icon"></i>
-          <span class="menu-title">Icons</span>
+          <span class="menu-title">Role</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" href="{{ route('jadwal.mapel') }}">
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-          <span class="menu-title">Forms</span>
+          <span class="menu-title">Jadwal Mapel</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="{{ route('kelas') }}l">
           <i class="mdi mdi-chart-bar menu-icon"></i>
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">Kelas</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
+        <a class="nav-link" href="{{ route('krs') }}">
           <i class="mdi mdi-table-large menu-icon"></i>
-          <span class="menu-title">Tables</span>
+          <span class="menu-title">KRS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('mapel') }}">
+          <i class="mdi mdi-table-large menu-icon"></i>
+          <span class="menu-title">Mata Pelajaran</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('nilai') }}">
+          <i class="mdi mdi-table-large menu-icon"></i>
+          <span class="menu-title">Nilai</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('semester') }}">
+          <i class="mdi mdi-table-large menu-icon"></i>
+          <span class="menu-title">Semester</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('thn.ajaran') }}">
+          <i class="mdi mdi-table-large menu-icon"></i>
+          <span class="menu-title">tahun Ajaran</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('krs') }}">
+          <i class="mdi mdi-table-large menu-icon"></i>
+          <span class="menu-title">KRS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('absensi') }}">
+          <i class="mdi mdi-bell menu-icon"></i>
+          <span class="menu-title">Absensi</span>
         </a>
       </li>
       <li class="nav-item pt-3">

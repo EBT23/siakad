@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Redis;
 
 class AdminController extends Controller
 {
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
     
     public function role()
     {
-        $data['title'] = 'Role Management';
-		$role = DB::table('role')->get();
-        return view('admin/role',  ['role' => $role], $data);
+       
+        return view('admin/role');
     }
 
     public function tambah_role(Request $request)
@@ -23,8 +26,7 @@ class AdminController extends Controller
         DB::table('role')->insert([
 			'role' => $request->role,
 			'created_at' => now(),
-		]);
-		return redirect()
+		]); return redirect()
 			->route('role')
 			->withSuccess('Role berhasil di tambah');
     }
